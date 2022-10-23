@@ -1,0 +1,8 @@
+
+.content {
+    grid-area: c;
+    background-color: greenyellow;
+}
+.descriptonblock{
+    padding:10px;
+}
