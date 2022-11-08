@@ -14,7 +14,8 @@ let initialState = {
         {id: 2, name: "Ignat"},
         {id: 3, name: "Sveta"},
         {id: 4, name: "Igor"},
-        {id: 5, name: "Vicktor"}
+        {id: 5, name: "Vicktor"},
+        {id: 6, name: "Nikita"}
     ],
     newMessageBody: "name"
 }

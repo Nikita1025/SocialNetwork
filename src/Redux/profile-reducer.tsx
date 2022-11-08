@@ -1,6 +1,4 @@
 import {ActionsTypes, PostsType} from "./store";
-
-
 export let initialState = {
     messageForNewPost: "",
     posts: [
@@ -8,7 +6,6 @@ export let initialState = {
         {id: 2, message: "Its, my first post", likesCount: 11}
     ]
 }
-
 export const profieReducer = (state= initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'ADD-POST': {
@@ -23,7 +20,6 @@ export const profieReducer = (state= initialState, action: ActionsTypes) => {
                 posts: [...state.posts, newPost]
             }
         }
-
         case 'ON-CHANGE-NEW-TEXT':{
             return {
                 ...state,
@@ -33,6 +29,4 @@ export const profieReducer = (state= initialState, action: ActionsTypes) => {
         default:
             return state
     }
-
-
 }

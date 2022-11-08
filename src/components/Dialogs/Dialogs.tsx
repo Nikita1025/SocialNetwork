@@ -29,6 +29,7 @@ export const Dialogs = (props: DialogsType) => {
                 <div>
                     <div><textarea onChange={onNewMessageChange} value={MessagesPage.newMessageBody}
                                    placeholder='Enter your message'></textarea></div>
+
                     <div>
                         <button onClick={onSendMessageClick}>Send</button>
                     </div>
