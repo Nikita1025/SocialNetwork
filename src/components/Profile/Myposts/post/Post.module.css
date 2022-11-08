@@ -2,9 +2,11 @@
 
 .item{
     display: flex;
-    color: white;
+    color: #cccccc;
     margin-bottom: 15px;
     flex-direction: column;
+    background-color: #656565;
+    border-radius: 5px;
 }
 .span {
 

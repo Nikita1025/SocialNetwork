@@ -4,7 +4,7 @@ import s from './Header.module.css'
 const Header= ()=>{
     return(
         <header className={s.header}>
-            <img src='https://w7.pngwing.com/pngs/405/396/png-transparent-odnoklassniki-social-network-vkontakte-computer-icons-linkedin-croissant-miscellaneous-text-orange-thumbnail.png'/>
+            <img  src='https://e7.pngegg.com/pngimages/998/652/png-clipart-social-media-linkedin-computer-icons-social-network-font-awesome-elegant-business-card-angle-text.png'/>
         </header>
     );
 }

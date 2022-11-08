@@ -3,6 +3,8 @@ import s from './Dialogs.module.css';
 import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
 import {DialogsType} from "./DialogsContainer";
+import {TextField} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 export const Dialogs = (props: DialogsType) => {
     let {MessagesPage, SandMessage, newMessageBodyAC} = props
@@ -25,21 +27,23 @@ export const Dialogs = (props: DialogsType) => {
 
             </div>
             <div className={s.messages}>
-                <div>{messageElements}</div>
-                <div>
-                    <div><textarea onChange={onNewMessageChange} value={MessagesPage.newMessageBody}
-                                   placeholder='Enter your message'></textarea></div>
-
+                <div style={{color: "white"}}>{messageElements}</div>
+                <div className={s.addContent}>
                     <div>
-                        <button onClick={onSendMessageClick}>Send</button>
+                        <TextField id="outlined-basic" variant="outlined"
+                                   style={{backgroundColor: "#656565", borderRadius: "5px"}}
+                                   onChange={onNewMessageChange}
+                                   value={MessagesPage.newMessageBody}
+                                   placeholder='Enter your message'/>
+                    </div>
+                    <div>
+                        <SendIcon style={{marginLeft: '10px', color: "#f9f9f9"}} onClick={onSendMessageClick}/>
                     </div>
                 </div>
-
-
             </div>
+
+
         </div>
-
-
     );
 };
 

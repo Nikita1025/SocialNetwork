@@ -11,14 +11,14 @@ type mapStateToPropsType ={
 }
 export type usersType = {
     id: number
-    photoURL: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    photos: {
+        small: string
+        large: string
     }
+    followed: boolean
+    name: string
+    status: string
+
 }
 type mapDispatchToPropsType ={
     follow:(userId:number)=>void

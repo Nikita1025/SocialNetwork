@@ -15,8 +15,6 @@ const Post = (props: PostsType) => {
                     sx={{width: 56, height: 56}}
                 />
                 <div>{props.message}</div>
-
-
                 <div className={s.span}>
                     <span>Like {props.likesCount}</span>
                 </div>

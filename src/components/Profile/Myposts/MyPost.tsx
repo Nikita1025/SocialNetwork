@@ -10,17 +10,17 @@ const MyPost = (props: MyPostType) => {
     return (
 
         <div className={s.postsBlock}>
-            <h3>My posts</h3>
+            <h3 className={s.post}>My Post</h3>
             <div className={s.addContent}>
                 <div>
                     <TextField id="outlined-basic" label="My Post" variant="outlined"
-                               style={{borderColor: "white"}}
+                               style={{backgroundColor: "#656565",borderRadius: "5px", width: "400px"}}
                                onChange={(e) => {
                                    props.onChangeNewText(e.currentTarget.value)
                                }} value={props.messageForNewPost}/>
                 </div>
                 <div>
-                    <SendIcon style={{marginLeft: '10px'}} onClick={props.addPost}/>
+                    <SendIcon style={{marginLeft: '10px', color: "#f9f9f9"}} onClick={props.addPost}/>
                 </div>
 
             </div>
@@ -28,8 +28,8 @@ const MyPost = (props: MyPostType) => {
                 {postElements}
             </div>
 
-        </div>
 
+        </div>
     )
 }
 export default MyPost;

@@ -2,25 +2,44 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
 
-
 }
 
 .dialogsItems {
-    padding: 10px;
-    text-decoration: none;
+    color: #cccccc;
+    background-color: #656565;
+    padding: 10px 0 10px 20px;
+    margin-right: 250px;
+    border-radius: 5px;
+    width: 50%;
+
 }
 .dialogsItems .active{
     color: gold;
 
+
 }
 .dialog {
+    color: #cccccc;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.addContent{
+    display: flex;
+    align-items: flex-end;
 
 }
-
 .messages {
     padding: 10px;
+    background-color: #656565;
+    border-radius: 5px;
+
 }
 
 .message {
 
+}
+.NavLink{
+    text-decoration: none;
+    color: #cccccc;
+    margin-bottom: 15px;
 }

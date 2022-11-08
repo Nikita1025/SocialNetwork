@@ -4,4 +4,10 @@
 .addContent{
     display: flex;
     align-items: flex-end;
+    margin-bottom: 15px;
+}
+.post {
+    color: #f5f5f5;
+    text-align: right;
+    padding-right: 20px;
 }
