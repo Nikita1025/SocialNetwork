@@ -1,17 +1,37 @@
 import React from 'react';
-import {UsersType} from "./UsersContainer";
-import axios from "axios";
-import userPhoto from  '../../image/user.png'
-export const Users = (props: UsersType) => {
-    let {usersPage, follow, unfollow, setUsers} =props
-    if (usersPage.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            setUsers(response.data.items)
-        })
+import s from "./Users.module.css";
+import userPhoto from "../../image/user.png";
+import {usersType} from "./UsersContainer";
+
+type UsersComp = {
+    users: Array<usersType>
+    pageSize: number
+    totalCount: number
+    currentPage: number
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    onClickHandler:(pageNumber: number)=>void
+}
+export const Users = (props: UsersComp) => {
+    let {users, follow, unfollow,onClickHandler, pageSize, currentPage, totalCount} = props
+    let pageCount = Math.ceil(totalCount / pageSize)
+    let pages = []
+    for (let i = 1; i <= pageCount; i++) {
+        pages.push(i)
     }
+
     return (
+
         <div>
-            {usersPage.map(u => <div key={u.id}>
+            <div className={s.page}>
+                {pages.map(el => {
+                    return <span onClick={(event) => {
+                        onClickHandler(el)
+                    }}
+                                 className={currentPage === el ? s.selectorPage : undefined}>{el}</span>
+                })}
+            </div>
+            {users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img style={{borderRadius: '50%', width: "100px", height: "100px"}}
@@ -27,7 +47,7 @@ export const Users = (props: UsersType) => {
 
                     </div>
                 </span>
-                <span>
+                <span className={s.name}>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -39,5 +59,7 @@ export const Users = (props: UsersType) => {
                 </span>
             </div>)}
         </div>
+
     );
-}
+};
+
