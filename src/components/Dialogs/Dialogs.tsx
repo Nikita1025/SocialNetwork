@@ -5,6 +5,7 @@ import {Message} from "./Message/Message";
 import {DialogsType} from "./DialogsContainer";
 import {TextField} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import {Redirect} from "react-router-dom";
 
 export const Dialogs = (props: DialogsType) => {
     let {MessagesPage, SandMessage, newMessageBodyAC} = props
@@ -19,6 +20,7 @@ export const Dialogs = (props: DialogsType) => {
     let onSendMessageClick = () => {
         SandMessage()
     }
+    if(!props.isAuth)  return <Redirect to={'/Login'}/>
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

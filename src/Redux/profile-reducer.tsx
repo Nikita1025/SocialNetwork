@@ -1,4 +1,7 @@
 import { PostsType} from "./store";
+import {Dispatch} from "redux";
+import axios from "axios";
+import {userAPI} from "../api/api";
 export let initialState = {
     messageForNewPost: "",
     posts: [
@@ -112,4 +115,12 @@ export const setUserProfile = (profile: ProfileInitialStateType)=>{
         type: "SET_USER_PROFILE",
         profile
     }as const
+}
+export const ProfileThunk =(userId: number)=>{
+    return (dispatch: Dispatch<ActionsTypes>)=>{
+       userAPI.profile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data))
+            })
+    }
 }

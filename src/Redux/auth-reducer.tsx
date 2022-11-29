@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {userAPI} from "../api/api";
+import {acceptUnfollow, followingInProgressAC} from "./user-reducer";
 
 export let initialState = {
     id: null,
@@ -19,12 +22,23 @@ export const authReducer = (state = initialState, action: ActionsTypes): AuthIni
             return state
     }
 }
-type ActionsTypes=SetUserDataACType
+type ActionsTypes = SetUserDataACType
 
 type SetUserDataACType = ReturnType<typeof SetUserDataAC>
 export const SetUserDataAC = (id: null, email: null, login: null) => {
     return {
         type: 'SET-USER-DATA',
         data: {id, email, login}
-    }as const
+    } as const
+}
+export const header = () => {
+    return (dispatch: Dispatch<ActionsTypes>) => {
+        userAPI.header()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let {id, email, login} = response.data.data
+                    dispatch(SetUserDataAC(id, email, login))
+                }
+            })
+    }
 }

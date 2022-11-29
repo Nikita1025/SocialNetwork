@@ -3,16 +3,13 @@ import {RootState} from "../../Redux/redux-store";
 import {
     Arr,
     follow,
-    followingInProgressAC,
-    setIsFetching,
+    followingInProgressAC, getUsersThunkCreator,
     setPage,
-    setTotalCount,
-    setUsers,
     unfollow
 } from "../../Redux/user-reducer";
 import {Users} from "./Users";
 import Preolader from "../Comman/Preolader/Preolader";
-import {getUsers} from "../../api/api";
+
 
 export type MapStateToPropsType = {
     users: Array<usersType>
@@ -37,33 +34,17 @@ export type usersType = {
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: Array<usersType>) => void
-    setPage: (pageNumber: number) => void
-    setTotalCount: (totalCount: number) => void
-    setIsFetching: (isFetching: boolean)=>void
-    followingInProgressAC: (isFetching: boolean,userID: number)=>void
+    getUsersThunkCreator: (currentPage:number, pageSize:number)=> void
+    setPage:(currentPage: number)=>void
 }
 export type UsersType = MapStateToPropsType & mapDispatchToPropsType
 export const UsersAPIComponent = (props: UsersType) => {
-    let {users, setUsers, setTotalCount, setPage, pageSize, currentPage} = props
+    let {users, getUsersThunkCreator, pageSize,currentPage} = props
     if (users.length === 0) {
-        props.setIsFetching(true)
-
-        getUsers(currentPage, pageSize).then(data => {
-            props.setIsFetching(false)
-            setUsers(data.items)
-            setTotalCount(data.totalCount)
-        })
+        getUsersThunkCreator(currentPage, pageSize)
     }
     const onClickHandler = (pageNumber: number) => {
-        setPage(pageNumber)
-        props.setIsFetching(true)
-            getUsers(pageNumber, pageSize)
-            .then(data => {
-            props.setIsFetching(false)
-            setUsers(data.items)
-
-        })
+        getUsersThunkCreator(pageNumber, pageSize)
     }
     return (<>
             {props.isFetching ? <Preolader/> : null}
@@ -74,7 +55,6 @@ export const UsersAPIComponent = (props: UsersType) => {
                    currentPage={props.currentPage}
                    onClickHandler={onClickHandler}
                    totalCount={props.totalCount}
-                   followingInProgressAC={props.followingInProgressAC}
                    arr={props.followingInProgress}
             />
         </>
@@ -91,7 +71,7 @@ let mapStateToProps = (state: RootState) => {
     }
 }
 export default connect(mapStateToProps, {follow,
-    unfollow, setUsers,setTotalCount, setPage, setIsFetching,
-    followingInProgressAC
+    unfollow, setPage,
+    followingInProgressAC, getUsersThunkCreator
 
 })(UsersAPIComponent)
