@@ -9,6 +9,8 @@ import {
 } from "../../Redux/user-reducer";
 import {Users} from "./Users";
 import Preolader from "../Comman/Preolader/Preolader";
+import {compose} from "redux";
+import React, {useEffect} from "react";
 
 
 export type MapStateToPropsType = {
@@ -40,9 +42,13 @@ type mapDispatchToPropsType = {
 export type UsersType = MapStateToPropsType & mapDispatchToPropsType
 export const UsersAPIComponent = (props: UsersType) => {
     let {users, getUsersThunkCreator, pageSize,currentPage} = props
-    if (users.length === 0) {
-        getUsersThunkCreator(currentPage, pageSize)
-    }
+
+    useEffect(() =>{
+        if (users.length === 0) {
+            getUsersThunkCreator(currentPage, pageSize)
+        }
+   },[users] )
+
     const onClickHandler = (pageNumber: number) => {
         getUsersThunkCreator(pageNumber, pageSize)
     }
@@ -67,11 +73,18 @@ let mapStateToProps = (state: RootState) => {
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
-export default connect(mapStateToProps, {follow,
+// let Redirect= HocComponent(UsersAPIComponent)
+// export default connect(mapStateToProps, {follow,
+//     unfollow, setPage,
+//     followingInProgressAC, getUsersThunkCreator
+//
+// })(Redirect)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {follow,
     unfollow, setPage,
-    followingInProgressAC, getUsersThunkCreator
-
-})(UsersAPIComponent)
+    followingInProgressAC, getUsersThunkCreator})
+)(UsersAPIComponent)

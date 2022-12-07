@@ -6,7 +6,8 @@ export let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    password: null
 }
 export type AuthInitialStateType = {
     id: null
@@ -18,17 +19,26 @@ export const authReducer = (state = initialState, action: ActionsTypes): AuthIni
     switch (action.type) {
         case "SET-USER-DATA":
             return {...state, ...action.data, isAuth: true}
+        case "LOGIN-ME":
+            return {...state, }
         default:
             return state
     }
 }
-type ActionsTypes = SetUserDataACType
+type ActionsTypes = SetUserDataACType | LoginMeACType
 
 type SetUserDataACType = ReturnType<typeof SetUserDataAC>
+type LoginMeACType= ReturnType<typeof LoginMeAC>
 export const SetUserDataAC = (id: null, email: null, login: null) => {
     return {
         type: 'SET-USER-DATA',
         data: {id, email, login}
+    } as const
+}
+export const LoginMeAC = (email:string, password:string)=>{
+    return{
+        type: 'LOGIN-ME',
+        email, password
     } as const
 }
 export const header = () => {

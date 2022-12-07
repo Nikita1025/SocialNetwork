@@ -3,8 +3,8 @@ import s from "./Users.module.css";
 import userPhoto from "../../image/user.png";
 import {usersType} from "./UsersContainer";
 import {NavLink} from 'react-router-dom';
-import {Arr, follow} from "../../Redux/user-reducer";
-import {userAPI} from "../../api/api";
+import {Arr} from "../../Redux/user-reducer";
+
 
 type UsersComp = {
     users: Array<usersType>
@@ -28,8 +28,8 @@ export const Users = (props: UsersComp) => {
 
         <div>
             <div className={s.page}>
-                {pages.map(el => {
-                    return <span onClick={(event) => {
+                {pages.map((el,index) => {
+                    return<span key={index} onClick={(event) => {
                         onClickHandler(el)
                     }}
                                  className={currentPage === el ? s.selectorPage : undefined}>{el}</span>

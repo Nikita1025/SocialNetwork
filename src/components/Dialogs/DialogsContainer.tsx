@@ -1,19 +1,20 @@
 import React from 'react';
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import { RootState} from "../../Redux/redux-store";
+import {RootState} from "../../Redux/redux-store";
 import {MessagesPageType} from "../../Redux/dialogs-reducer";
 import {newMessageBodyAC, SandMessageAC} from "../../Redux/store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
+import {HocComponent} from "../../HOC/HocComponent";
 
 
-type mapStateToPropsType={
-    MessagesPage:MessagesPageType
+type mapStateToPropsType = {
+    MessagesPage: MessagesPageType
     isAuth: boolean
 }
-type mapDispatchToProps={
-    newMessageBodyAC:(body: string)=>void
-    SandMessage:()=>void
+type mapDispatchToProps = {
+    newMessageBodyAC: (body: string) => void
+    SandMessage: () => void
 }
 export type DialogsType = mapStateToPropsType & mapDispatchToProps
 let mapStateToProps = (state: RootState): mapStateToPropsType => {
@@ -22,7 +23,7 @@ let mapStateToProps = (state: RootState): mapStateToPropsType => {
         isAuth: state.auth.isAuth
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToProps=> {
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
     return {
         newMessageBodyAC: (body: string) => {
             dispatch(newMessageBodyAC(body))
@@ -33,4 +34,7 @@ let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToProps=> {
 
     }
 }
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps)
+)(Dialogs)

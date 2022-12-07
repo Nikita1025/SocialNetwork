@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {ComponentType, useEffect} from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {ProfileInitialStateType, ProfileThunk} from "../../Redux/profile-reducer";
+import {getStatusThunk, ProfileInitialStateType, ProfileThunk, updateStatusThunk} from "../../Redux/profile-reducer";
 import {RootState} from "../../Redux/redux-store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {HocComponent} from "../../HOC/HocComponent";
+import {compose} from "redux";
 
 type PathParamsType = {
     userId: string
@@ -16,28 +18,43 @@ const ProfileContainer = (props: CommonPropsType) => {
             userId = 2
         }
         props.ProfileThunk(userId)
+        props.getStatusThunk(userId)
+
     }, [])
-    if(!props.isAuth)  return <Redirect to={'/Login'}/>
 
     return (
-            <Profile {...props} profile={props.profile}/>
+            <Profile {...props} profile={props.profile} status={props.status}
+            updateStatusThunk={props.updateStatusThunk}
+            />
     )
 
 
 }
+
+
 export type ProfileContainerType = MapStateToPropsType & MapDispatchToProps
 type MapStateToPropsType = {
     profile: ProfileInitialStateType
     isAuth: boolean
+    status: string
 }
 type MapDispatchToProps = {
     ProfileThunk: (userId: number) => void
+    getStatusThunk:(userId: number)=>void
+    updateStatusThunk:(status: string)=>void
 }
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    status: state.profilePage.status
 })
 
-let witchRoutC = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {ProfileThunk})(witchRoutC)
 
+
+export default compose<ComponentType>(
+    connect(mapStateToProps, {ProfileThunk,
+        getStatusThunk,
+        updateStatusThunk}),
+    withRouter,
+    HocComponent
+)(ProfileContainer)
