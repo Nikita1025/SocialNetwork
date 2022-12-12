@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import axios from "axios";
 import {profileAPI, userAPI} from "../api/api";
 export let initialState = {
-    messageForNewPost: "",
     posts: [
         {id: 1, message: "Hi, how are you", likesCount: 12},
         {id: 2, message: "Its, my first post", likesCount: 11}
@@ -57,21 +56,14 @@ export const profieReducer = (state= initialState, action: ActionsTypes) => {
         case 'ADD-POST': {
             const newPost: PostsType = {
                 id: 5,
-                message: state.messageForNewPost,
+                message: action.newPostText,
                 likesCount: 10
             }
             return {
                 ...state,
-                messageForNewPost: '',
                 posts: [...state.posts, newPost]
             }
         }
-        case 'ON-CHANGE-NEW-TEXT':{
-            return {
-                ...state,
-                messageForNewPost:action.NewText
-            }
-            }
         case 'SET_USER_PROFILE':{
             return {...state, profile: action.profile}
         }
@@ -82,11 +74,10 @@ export const profieReducer = (state= initialState, action: ActionsTypes) => {
             return state
     }
 }
-type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+type ActionsTypes = AddPostActionType
     |newMessageBodyType | SendMessageType
     |setUserProfileType | setStatusType
 type AddPostActionType = ReturnType<typeof addPostAC>
-type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextActionAC>
 type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
 type SendMessageType = ReturnType<typeof SandMessageAC>
 type setUserProfileType = ReturnType<typeof setUserProfile>
@@ -104,16 +95,10 @@ export const newMessageBodyAC = (body:string) => {
     } as const
 
 }
-export const addPostAC = () => {
+export const addPostAC = (newPostText:string) => {
     return {
-        type: 'ADD-POST'
-
-    } as const
-}
-export const ChangeNewTextActionAC = (NewText: string) => {
-    return {
-        type: 'ON-CHANGE-NEW-TEXT',
-        NewText: NewText
+        type: 'ADD-POST',
+        newPostText
 
     } as const
 }

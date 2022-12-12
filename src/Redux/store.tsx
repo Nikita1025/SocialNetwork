@@ -1,25 +1,11 @@
-type AddPostActionType = ReturnType<typeof addPostAC>
+
 type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextActionAC>
-type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
 type SendMessageType = ReturnType<typeof SandMessageAC>
-export const SandMessageAC=()=>{
+export const SandMessageAC=(newMessageBody:string)=>{
     return{
-        type:'SEND-MESSAGE'
+        type:'SEND-MESSAGE',
+        newMessageBody
     }as const
-}
-
-export const newMessageBodyAC = (body:string) => {
-    return {
-        type: 'UPPDATE-NEW-MESSAGE-BODY',
-        body: body
-    } as const
-
-        }
-export const addPostAC = () => {
-    return {
-        type: 'ADD-POST'
-
-    } as const
 }
 export const ChangeNewTextActionAC = (NewText: string) => {
     return {
@@ -38,7 +24,7 @@ export type StoreType = {
 }
 
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType |newMessageBodyType | SendMessageType
+export type ActionsTypes =  ChangeNewTextActionType  | SendMessageType
 export type PostsType = {
     id: number
     message: string

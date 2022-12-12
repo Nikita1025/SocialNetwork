@@ -16,13 +16,11 @@ let initialState = {
         {id: 4, name: "Igor"},
         {id: 5, name: "Vicktor"},
         {id: 6, name: "Nikita"}
-    ],
-    newMessageBody: "name"
+    ]
 }
 export type MessagesPageType = {
     messages: MessageType[],
     dialogs: DialogType[]
-    newMessageBody: string
 }
 
 type DialogType = {
@@ -36,18 +34,10 @@ type MessageType = {
 
 export const dialogsReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case'UPPDATE-NEW-MESSAGE-BODY': {
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
-
-        }
         case'SEND-MESSAGE': {
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             }
 
