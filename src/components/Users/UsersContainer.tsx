@@ -17,7 +17,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalCount,
-    getUsers
+    getUsersSuper
 } from "../../Redux/users-selectors";
 
 
@@ -77,7 +77,7 @@ export const UsersAPIComponent = (props: UsersType) => {
 
 let mapStateToProps = (state: RootState) => {
     return {
-        users: getUsers(state),
+        users: getUsersSuper(state),
         pageSize: getPageSize(state),
         totalCount:getTotalCount(state),
         currentPage: getCurrentPage(state),
@@ -86,12 +86,6 @@ let mapStateToProps = (state: RootState) => {
         isAuth: state.auth.isAuth
     }
 }
-// let Redirect= HocComponent(UsersAPIComponent)
-// export default connect(mapStateToProps, {follow,
-//     unfollow, setPage,
-//     followingInProgressAC, getUsersThunkCreator
-//
-// })(Redirect)
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {follow,
     unfollow, setPage,
