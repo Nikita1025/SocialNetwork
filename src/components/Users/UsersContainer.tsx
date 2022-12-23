@@ -11,6 +11,14 @@ import {Users} from "./Users";
 import Preolader from "../Comman/Preolader/Preolader";
 import {compose} from "redux";
 import React, {useEffect} from "react";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalCount,
+    getUsers
+} from "../../Redux/users-selectors";
 
 
 export type MapStateToPropsType = {
@@ -66,14 +74,15 @@ export const UsersAPIComponent = (props: UsersType) => {
         </>
     )
 }
+
 let mapStateToProps = (state: RootState) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalCount: state.usersPage.totalCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalCount:getTotalCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress:getFollowingInProgress(state),
         isAuth: state.auth.isAuth
     }
 }

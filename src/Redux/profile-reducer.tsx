@@ -1,4 +1,4 @@
-import { PostsType} from "./store";
+import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
 import axios from "axios";
 import {profileAPI, userAPI} from "../api/api";
@@ -51,7 +51,7 @@ export type ProfileInitialStateType={
         large: string
     }
 }
-export const profieReducer = (state= initialState, action: ActionsTypes) => {
+export const profieReducer = (state= initialState, action: ActionTypesProfile) => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostsType = {
@@ -74,7 +74,7 @@ export const profieReducer = (state= initialState, action: ActionsTypes) => {
             return state
     }
 }
-type ActionsTypes = AddPostActionType
+export type ActionTypesProfile = AddPostActionType
     |newMessageBodyType | SendMessageType
     |setUserProfileType | setStatusType
 type AddPostActionType = ReturnType<typeof addPostAC>
@@ -82,6 +82,11 @@ type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
 type SendMessageType = ReturnType<typeof SandMessageAC>
 type setUserProfileType = ReturnType<typeof setUserProfile>
 type setStatusType=ReturnType<typeof setStatus>
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 export const SandMessageAC=()=>{
     return{
         type:'SEND-MESSAGE'

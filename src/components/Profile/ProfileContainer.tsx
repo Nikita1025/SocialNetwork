@@ -15,7 +15,7 @@ const ProfileContainer = (props: CommonPropsType) => {
     useEffect(() => {
         let userId = +props.match.params.userId
         if(!userId){
-            userId = 2
+            userId = Number(props.authorizedUserId)
         }
         props.ProfileThunk(userId)
         props.getStatusThunk(userId)
@@ -37,6 +37,7 @@ type MapStateToPropsType = {
     profile: ProfileInitialStateType
     isAuth: boolean
     status: string
+    authorizedUserId: string
 }
 type MapDispatchToProps = {
     ProfileThunk: (userId: number) => void
@@ -46,7 +47,8 @@ type MapDispatchToProps = {
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.id
 })
 
 

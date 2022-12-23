@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './Post.module.css'
-import {PostsType} from "../../../../Redux/store";
+
 import {Avatar} from "@mui/material";
+import {PostsType} from "../../../../Redux/profile-reducer";
 
 
 

@@ -2,10 +2,9 @@ import React from 'react';
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import {MessagesPageType} from "../../Redux/dialogs-reducer";
-import {SandMessageAC} from "../../Redux/store";
+import {MessagesPageType, SandMessageAC} from "../../Redux/dialogs-reducer";
+
 import {compose, Dispatch} from "redux";
-import {HocComponent} from "../../HOC/HocComponent";
 
 
 type mapStateToPropsType = {

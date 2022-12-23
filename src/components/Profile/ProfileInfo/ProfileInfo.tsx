@@ -15,10 +15,10 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <div>
 
             <div>
-                {/*<img*/}
-                {/*    src='https://abrakadabra.fun/uploads/posts/2022-01/1642519550_17-abrakadabra-fun-p-fon-dlya-prezentatsii-sotsseti-23.jpg'*/}
-                {/*    style={{width: "100%"}}*/}
-                {/*/>*/}
+                <img
+                    src='https://abrakadabra.fun/uploads/posts/2022-01/1642519550_17-abrakadabra-fun-p-fon-dlya-prezentatsii-sotsseti-23.jpg'
+                    style={{width: "100%"}}
+                />
             </div>
             <div>
                 <img src={props.profile.photos.large}/>
