@@ -1,7 +1,7 @@
 import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
-import axios from "axios";
-import {profileAPI, userAPI} from "../api/api";
+;import {profileAPI, userAPI} from "../api/api";
+
 export let initialState = {
     posts: [
         {id: 1, message: "Hi, how are you", likesCount: 12},
@@ -30,9 +30,88 @@ export let initialState = {
     },
     status: ""
 }
-export type ProfileInitialStateType={
+
+export const profileReducer = (state = initialState, action: ActionTypesProfile) => {
+    switch (action.type) {
+        case 'ADD-POST': {
+            const newPost: PostsType = {
+                id: 5,
+                message: action.newPostText,
+                likesCount: 10
+            }
+            return {
+                ...state,
+                posts: [...state.posts, newPost]
+            }
+        }
+        case 'SET_USER_PROFILE': {
+            return {...state, profile: action.profile}
+        }
+        case "SET-STATUS": {
+            return {...state, status: action.status}
+        }
+        case "DELETE-POST": {
+            return {...state, posts: state.posts.filter(el => el.id === action.id)}
+        }
+        default:
+            return state
+    }
+}
+
+//actions
+export const SandMessageAC = () => ({type: 'SEND-MESSAGE'} as const)
+export const newMessageBodyAC = (body: string) => ({type: 'UPDATE-NEW-MESSAGE-BODY', body: body} as const)
+export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText} as const)
+export const setUserProfile = (profile: ProfileInitialStateType) => ({type: "SET_USER_PROFILE", profile} as const)
+export const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
+export const deletePostAC = (id: number) => ({type: 'DELETE-POST', id} as const)
+
+//thunks
+export const ProfileThunk = (userId: number) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
+        const res = await userAPI.profile(userId)
+        dispatch(setUserProfile(res.data))
+    }
+
+export const getStatusThunk = (userId: number) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
+        const res = await profileAPI.getStatus(userId)
+        dispatch(setStatus(res.data))
+
+    }
+export const updateStatusThunk = (status: string) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
+        const res = await profileAPI.updateStatus(status)
+        if (res.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+
+    }
+
+//types
+export type ActionTypesProfile = AddPostActionType
+    | newMessageBodyType | SendMessageType
+    | setUserProfileType | setStatusType
+    | ReturnType<typeof deletePostAC>
+type AddPostActionType = ReturnType<typeof addPostAC>
+type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
+type SendMessageType = ReturnType<typeof SandMessageAC>
+type setUserProfileType = ReturnType<typeof setUserProfile>
+type setStatusType = ReturnType<typeof setStatus>
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type initialStateType = {
+    posts: Array<PostsType>
+    profile: ProfileInitialStateType
+    status: string
+}
+
+export type ProfileInitialStateType = {
     aboutMe: string
-    contacts:{
+    contacts: {
         facebook: string
         website: null,
         vk: string
@@ -49,100 +128,5 @@ export type ProfileInitialStateType={
     photos: {
         small: string
         large: string
-    }
-}
-export const profieReducer = (state= initialState, action: ActionTypesProfile) => {
-    switch (action.type) {
-        case 'ADD-POST': {
-            const newPost: PostsType = {
-                id: 5,
-                message: action.newPostText,
-                likesCount: 10
-            }
-            return {
-                ...state,
-                posts: [...state.posts, newPost]
-            }
-        }
-        case 'SET_USER_PROFILE':{
-            return {...state, profile: action.profile}
-        }
-        case "SET-STATUS":{
-            return {...state, status:action.status}
-        }
-        default:
-            return state
-    }
-}
-export type ActionTypesProfile = AddPostActionType
-    |newMessageBodyType | SendMessageType
-    |setUserProfileType | setStatusType
-type AddPostActionType = ReturnType<typeof addPostAC>
-type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
-type SendMessageType = ReturnType<typeof SandMessageAC>
-type setUserProfileType = ReturnType<typeof setUserProfile>
-type setStatusType=ReturnType<typeof setStatus>
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export const SandMessageAC=()=>{
-    return{
-        type:'SEND-MESSAGE'
-    }as const
-}
-
-export const newMessageBodyAC = (body:string) => {
-    return {
-        type: 'UPPDATE-NEW-MESSAGE-BODY',
-        body: body
-    } as const
-
-}
-export const addPostAC = (newPostText:string) => {
-    return {
-        type: 'ADD-POST',
-        newPostText
-
-    } as const
-}
-export const setUserProfile = (profile: ProfileInitialStateType)=>{
-    return{
-        type: "SET_USER_PROFILE",
-        profile
-    }as const
-}
-export const setStatus =(status: string)=>{
-    return{
-        type: "SET-STATUS",
-        status
-    }as const
-}
-export const ProfileThunk =(userId: number)=>{
-    return (dispatch: Dispatch<ActionsTypes>)=>{
-       userAPI.profile(userId)
-            .then(response => {
-                dispatch(setUserProfile(response.data))
-            })
-    }
-}
-export const getStatusThunk =(userId: number)=>{
-    return (dispatch: Dispatch<ActionsTypes>)=>{
-        profileAPI.getStatus(userId)
-            .then(response => {
-                dispatch(setStatus(response.data))
-            })
-    }
-}
-export const updateStatusThunk =(status: string)=>{
-    return (dispatch: Dispatch<ActionsTypes>)=>{
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if(response.data.resultCode===0){
-                    dispatch(setStatus(status))
-                }
-
-            })
     }
 }

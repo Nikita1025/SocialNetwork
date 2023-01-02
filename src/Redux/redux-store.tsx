@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {profieReducer} from "./profile-reducer";
+import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {usersReducer} from "./user-reducer";
 import {authReducer} from "./auth-reducer";
@@ -9,7 +9,7 @@ import {appReducer} from "./app-reducer";
 
 
 let rootReducer = combineReducers({
-    profilePage: profieReducer,
+    profilePage: profileReducer,
     messagesPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,

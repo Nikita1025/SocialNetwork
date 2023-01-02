@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {memo} from 'react';
 import s from './Mypost.module.css'
 import Post from './post/Post';
 import {MyPostType} from "./Mypostcontainer";
 import {AddNewPostReduxForm, FormDataType} from "../../Comman/FormProfile";
-import {maxLengthCreator, required} from '../../../utils/validators/validators';
 
-const MyPost = (props: MyPostType) => {
+const MyPost = memo((props: MyPostType) => {
     let postElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
     let onAddPost=(values:FormDataType)=>{
         props.addPost(values.newPostText)
@@ -23,5 +22,5 @@ const MyPost = (props: MyPostType) => {
 
         </div>
     )
-}
+})
 export default MyPost;
