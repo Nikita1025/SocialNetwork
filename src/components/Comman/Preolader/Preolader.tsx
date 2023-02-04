@@ -1,12 +1,11 @@
-import React from 'react';
-import loading from "../../../image/Dual Ball-1.3s-200px (1).svg";
-
-const Preolader = () => {
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import s from './Preloader.module.css'
+export default function CircularIndeterminate() {
     return (
-        <div>
-            <img src={loading}/>
-        </div>
+        <Box sx={{ display: 'flex' }} className={s.progress}>
+            <CircularProgress />
+        </Box>
     );
-};
-
-export default Preolader;
+}
