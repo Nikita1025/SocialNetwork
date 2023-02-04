@@ -16,6 +16,7 @@ type UsersComp = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onClickHandler: (pageNumber: number) => void
+    portionSize:number
     arr: Arr[]
 }
 export const Users: React.FC<UsersComp> = ({
@@ -26,12 +27,13 @@ export const Users: React.FC<UsersComp> = ({
                                                pageSize,
                                                currentPage,
                                                totalCount,
-                                               arr
+                                               arr,
+                                               portionSize
                                            }) => {
     return (
         <div>
             <Paginator onClickHandler={onClickHandler} totalCount={totalCount} currentPage={currentPage}
-                       pageSize={pageSize}/>
+                       pageSize={pageSize} portionSize={portionSize}/>
             {users.map(u => <User user={u} key={u.id} arr={arr} pageSize={pageSize} currentPage={currentPage}
                                   onClickHandler={onClickHandler} totalCount={totalCount} follow={follow}
                                   unfollow={unfollow}/>)}
