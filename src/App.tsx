@@ -47,12 +47,16 @@ class App extends React.Component<AppType> {
                                 <DialogsContainer/>
                             </Suspense>
                         }}/>
-                        <Route path='/profile/:userId?' render={ ()=>{
+                        <Route path='/profile/:userId?' render={() => {
                             return <Suspense fallback={<div>...Loading</div>}>
                                 <ProfileContainer/>
                             </Suspense>
                         }}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/users' render={() => {
+                            return <Suspense fallback={<div>...Loading</div>}>
+                                <UsersContainer/>
+                            </Suspense>
+                        }}/>
                         <Route path='/login' render={() => <Login/>}/>
                     </div>
 
@@ -62,20 +66,20 @@ class App extends React.Component<AppType> {
 
 
     }
-    }
+}
 
-    let AppContainer = compose<React.ComponentType>(
+let AppContainer = compose<React.ComponentType>(
     withRouter,
-        connect(mapStateToProps, {initializeApp})
-    )
-        (App)
+    connect(mapStateToProps, {initializeApp})
+)
+(App)
 
 
-        const SamuraiApp = () => {
-            return <BrowserRouter>
-                <Provider store={store}>
-                    <AppContainer/>
-                </Provider>
-            </BrowserRouter>
-        }
-        export default SamuraiApp
+const SamuraiApp = () => {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </BrowserRouter>
+}
+export default SamuraiApp

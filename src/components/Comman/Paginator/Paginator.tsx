@@ -7,9 +7,10 @@ type UsersComp = {
     totalCount: number
     currentPage: number
     onClickHandler: (pageNumber: number) => void
-    portionSize: number
+    portionSize?:number
+
 }
-export const Paginator:React.FC<UsersComp> = ({onClickHandler, pageSize, currentPage, totalCount,portionSize}) => {
+export const Paginator:React.FC<UsersComp> = ({onClickHandler, pageSize, currentPage, totalCount,portionSize=10}) => {
     let pageCount = Math.ceil(totalCount / pageSize)
     let pages = []
     for (let i = 1; i <= 20; i++) {

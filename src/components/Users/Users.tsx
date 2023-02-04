@@ -1,8 +1,5 @@
 import React from 'react';
-import s from "./Users.module.css";
-import userPhoto from "../../image/user.png";
 import {usersType} from "./UsersContainer";
-import {NavLink} from 'react-router-dom';
 import {Arr} from "../../Redux/user-reducer";
 import {Paginator} from "../Comman/Paginator/Paginator";
 import {User} from "./User";
@@ -16,7 +13,7 @@ type UsersComp = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     onClickHandler: (pageNumber: number) => void
-    portionSize:number
+
     arr: Arr[]
 }
 export const Users: React.FC<UsersComp> = ({
@@ -28,12 +25,12 @@ export const Users: React.FC<UsersComp> = ({
                                                currentPage,
                                                totalCount,
                                                arr,
-                                               portionSize
+
                                            }) => {
     return (
         <div>
             <Paginator onClickHandler={onClickHandler} totalCount={totalCount} currentPage={currentPage}
-                       pageSize={pageSize} portionSize={portionSize}/>
+                       pageSize={pageSize} />
             {users.map(u => <User user={u} key={u.id} arr={arr} pageSize={pageSize} currentPage={currentPage}
                                   onClickHandler={onClickHandler} totalCount={totalCount} follow={follow}
                                   unfollow={unfollow}/>)}

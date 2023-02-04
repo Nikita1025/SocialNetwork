@@ -49,7 +49,7 @@ type mapDispatchToPropsType = {
 }
 export type UsersType = MapStateToPropsType & mapDispatchToPropsType
 export const UsersAPIComponent = (props: UsersType) => {
-    let {users, getUsersThunkCreator, pageSize,currentPage} = props
+    let {users, getUsersThunkCreator, pageSize,currentPage,follow,unfollow,totalCount,followingInProgress,isFetching} = props
 
     useEffect(() =>{
         if (users.length === 0) {
@@ -60,16 +60,18 @@ export const UsersAPIComponent = (props: UsersType) => {
     const onClickHandler = (pageNumber: number) => {
         getUsersThunkCreator(pageNumber, pageSize)
     }
+
+    console.log('users container')
     return (<>
-            {props.isFetching ? <Preolader/> : null}
-            <Users users={props.users}
-                   unfollow={props.unfollow}
-                   follow={props.follow}
+            {isFetching ? <Preolader/> : null}
+            <Users users={users}
+                   unfollow={unfollow}
+                   follow={follow}
                    pageSize={pageSize}
-                   currentPage={props.currentPage}
+                   currentPage={currentPage}
                    onClickHandler={onClickHandler}
-                   totalCount={props.totalCount}
-                   arr={props.followingInProgress}
+                   totalCount={totalCount}
+                   arr={followingInProgress}
             />
         </>
     )

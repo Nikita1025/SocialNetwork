@@ -69,12 +69,18 @@ export const followingInProgressAC = (isFetching: boolean, userID: number) => ({
 //thunks
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) =>
     async (dispatch: Dispatch<ActionsTypes>) => {
+    try {
         dispatch(setIsFetching(true))
         dispatch(setPage(currentPage))
         const res = await userAPI.getUsers(currentPage, pageSize)
         dispatch(setIsFetching(false))
         dispatch(setUsers(res.items))
         dispatch(setTotalCount(res.totalCount))
+    }
+    catch (e) {
+        console.log(e)
+    }
+
     }
 export const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, AC: any) => {
     dispatch(followingInProgressAC(true, userId))

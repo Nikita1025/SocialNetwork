@@ -1,9 +1,8 @@
 import React from 'react';
 import Preolader from "../../Comman/Preolader/Preolader";
 import {ProfileInitialStateType} from "../../../Redux/profile-reducer";
-import {ProfileStatus} from "../Myposts/ProfileStatus";
 import {ProfileStatusWithHooks} from "../Myposts/ProfileStatusWithHooks";
-import userPhoto from "../../image/user.png";
+import userPhoto from "../../../image/person.png";
 
 type ProfileInfoType={
    profile: ProfileInitialStateType
