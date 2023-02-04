@@ -1,8 +1,36 @@
 
-.content {
-    grid-area: c;
-    background-color: greenyellow;
+.image{
+    background-image: url("https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/uploads/buddypress/members/1/cover-image/60b0724fc9a1a-bp-cover-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 140px;
+    border-radius: 8px;
+    padding: 180px 35px 35px 50px;
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 0;
 }
-.descriptonblock{
-    padding:10px;
+.image::before{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to top,rgba(0,0,0,.9),transparent);
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.avatar{
+    position: absolute;
+}
+.infoContainer{
+    position: relative;
+    margin-right: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+    display: inline-block;
+    width: 125px;
 }
