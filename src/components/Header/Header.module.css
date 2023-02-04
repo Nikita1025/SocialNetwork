@@ -1,12 +1,14 @@
-.header {
-    grid-area: h;
-    background-color: #292929;
+.container{
+    margin-bottom: 70px;
 }
-.header img{
-    width: 60px;
-    border-radius: 15px;
+.img{
+    width: 130px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 5px;
+    font-size: 36px;
+    line-height: 42px;
 }
 .loginBlock{
-    float: right;
-    color: white;
+    display: flex;
 }
