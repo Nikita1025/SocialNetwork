@@ -4,6 +4,7 @@ import Mypostcontainer from "./Myposts/Mypostcontainer";
 import {CommonPropsType} from "./ProfileContainer";
 import HeaderContainer from "../Header/HeaderContainer";
 import s from './Profile.module.css'
+import Nav from "../Nav/Nav";
 
 const Profile = (props:CommonPropsType) => {
 
@@ -13,6 +14,7 @@ const Profile = (props:CommonPropsType) => {
             <div className={s.container}>
                 <ProfileInfo  profile={props.profile} status={props.status}
                               updateStatusThunk={props.updateStatusThunk}/>
+                <Nav/>
                 <Mypostcontainer />
             </div>
 

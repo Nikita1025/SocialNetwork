@@ -3,8 +3,11 @@ import s from './Mypost.module.css'
 import Post from './post/Post';
 import {MyPostType} from "./Mypostcontainer";
 import {AddNewPostReduxForm, FormDataType} from "../../Comman/FormProfile";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../Redux/redux-store";
 
 const MyPost = memo((props: MyPostType) => {
+
     let postElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
     let onAddPost=(values:FormDataType)=>{
         props.addPost(values.newPostText)

@@ -3,20 +3,26 @@ import s from './Post.module.css'
 
 import {Avatar} from "@mui/material";
 import {PostsType} from "../../../../Redux/profile-reducer";
-
+import user from '../../../../image/user.png'
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../Redux/redux-store";
 
 
 const Post = (props: PostsType) => {
+    const userName=useSelector<RootState, string>(state => state.profilePage.profile.fullName)
     return (
 
-            <div className={s.item}>
-                <Avatar
-                    alt="Remy Sharp"
-                    src="https://play-lh.googleusercontent.com/69DEGMGZWRsrGy6AyIZ3k8xJGMGXHfr6jzn63IBBcyD3CgyixnmRZIfMf0QrbdWUQTBg=w240-h480-rw"
-                    sx={{width: 56, height: 56}}
-                />
-                <div>{props.message}</div>
+            <div className={s.cont}>
+                <div className={s.name}>
+                    <Avatar
+                        alt="Remy Sharp"
+                        src={user}
+                        sx={{width: 56, height: 56}}
+                    />
+                    <span>{userName}</span>
+                </div>
                 <div className={s.span}>
+                    <div>{props.message}</div>
                     <span>Like {props.likesCount}</span>
                 </div>
             </div>
