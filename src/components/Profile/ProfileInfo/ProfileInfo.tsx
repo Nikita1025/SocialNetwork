@@ -2,7 +2,7 @@ import React from 'react';
 import Preolader from "../../Comman/Preolader/Preolader";
 import {ProfileInitialStateType} from "../../../Redux/profile-reducer";
 import {ProfileStatusWithHooks} from "../Myposts/ProfileStatusWithHooks";
-import userPhoto from "../../../image/person.png";
+import userPhoto from "../../../image/user.png";
 import s from './Profileinfo.module.css'
 
 type ProfileInfoType = {
@@ -18,8 +18,8 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <div className={s.image}>
             <div className={s.infoContainer}>
                 <img src={props.profile.photos.large || userPhoto} className={s.avatar}/>
-                <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk}/>
             </div>
+            <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} profile={props.profile}/>
         </div>
 
     )

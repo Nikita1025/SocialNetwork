@@ -1,0 +1,24 @@
+.textContainer{
+    margin-left: 20%;
+}
+.userName{
+    display: flex;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 2px;
+    position: relative;
+    color: #fff;
+    text-transform: capitalize;
+}
+.text{
+    font-size: 17px;
+    max-width: 550px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.input{
+    color: #fff;
+
+}

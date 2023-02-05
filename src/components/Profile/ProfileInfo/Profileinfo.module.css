@@ -24,12 +24,23 @@
 }
 .avatar{
     position: absolute;
+    border-radius: 50%;
+    max-width: 95%;
+    height: auto;
+    background-color: #fff;
+    margin-right: 30px;
+}
+.infoContainer::after{
+    content: url('https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/themes/cirkle/assets/img/round_shape1.png');
+    position: absolute;
+    top: -3px;
+    left: -2px;
 }
 .infoContainer{
     position: relative;
-    margin-right: 30px;
+
     border-radius: 50%;
-    background-color: #fff;
+
     padding: 5px;
     display: inline-block;
     width: 125px;
