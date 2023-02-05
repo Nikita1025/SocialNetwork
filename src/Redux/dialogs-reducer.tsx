@@ -1,18 +1,17 @@
+import user1 from '../image/user1.jpg'
+import user2 from '../image/user2.png'
+import user3 from '../image/194938.png'
+
 let initialState = {
     messages: [
-        {id: 1, message: "Hi"},
-        {id: 2, message: "How is you"},
-        {id: 3, message: "Yo"},
-        {id: 4, message: "Yo"},
-        {id: 5, message: "Yo"}
+        {id: 1, message: "Hi", avatar:user1},
+        {id: 2, message: "How is you", avatar:user1},
+        {id: 3, message: "Yo", avatar:user1},
     ],
     dialogs: [
-        {id: 1, name: "Dimych"},
-        {id: 2, name: "Ignat"},
-        {id: 3, name: "Sveta"},
-        {id: 4, name: "Igor"},
-        {id: 5, name: "Vicktor"},
-        {id: 6, name: "Nikita"}
+        {id: 1, name: "Dimych", avatar:user1},
+        {id: 2, name: "Ignat", avatar:user2},
+        {id: 3, name: "Sveta", avatar:user3},
     ]
 }
 export type MessagesPageType = {
@@ -23,10 +22,12 @@ export type MessagesPageType = {
 type DialogType = {
     id: number
     name: string
+    avatar: string
 }
 type MessageType = {
     id: number
     message: string
+    avatar: string
 }
 
 export const dialogsReducer = (state = initialState, action: ActionTypeDialog) => {

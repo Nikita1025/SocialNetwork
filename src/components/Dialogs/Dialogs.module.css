@@ -1,45 +1,71 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
 }
 
 .dialogsItems {
-    color: #cccccc;
-    background-color: #656565;
-    padding: 10px 0 10px 20px;
-    margin-right: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    background: #f8f8ff;
     border-radius: 5px;
-    width: 50%;
-
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 30%);
+    margin: 20px 10px 10px;
 }
-.dialogsItems .active{
+
+.dialogsItems .active {
     color: gold;
 
 
 }
+
 .dialog {
-    color: #cccccc;
+    color: black;
     margin-bottom: 10px;
     font-size: 18px;
 }
-.addContent{
+
+.addContent {
     display: flex;
     align-items: flex-end;
 
 }
-.messages {
+.messageContainer{
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+.messageBox {
+    align-items: center;
+color:black;
+    border-radius: 15px;
+    display: flex;
+    margin: 10px;
     padding: 10px;
-    background-color: #656565;
-    border-radius: 5px;
-
+    position: relative;
+    width: auto;
+    background: #f8f8ff;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 35%);
 }
 
-.message {
 
-}
-.NavLink{
+.NavLink {
+    padding: 0 15px;
     text-decoration: none;
-    color: #cccccc;
+    color: black;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NavLink:hover {
+    color: #656565;
+}
+
+.avatar {
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
 }

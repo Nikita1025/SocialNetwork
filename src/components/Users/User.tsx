@@ -5,6 +5,9 @@ import {usersType} from "./UsersContainer";
 import {NavLink} from 'react-router-dom';
 import {Arr} from "../../Redux/user-reducer";
 import {Paginator} from "../Comman/Paginator/Paginator";
+import HeaderContainer from "../Header/HeaderContainer";
+import Nav from "../Nav/Nav";
+import Button from "@mui/material/Button";
 
 
 type UsersComp = {
@@ -28,7 +31,8 @@ export const User: React.FC<UsersComp> = ({
                                               arr
                                           }) => {
     return (
-        <div>
+        <div className={s.containerUser}>
+
                 <span>
                     <div>
                         <NavLink to={'/profile/' + user.id}>
@@ -36,27 +40,24 @@ export const User: React.FC<UsersComp> = ({
                              src={user.photos.small !== null ? user.photos.small : userPhoto}/>
                         </NavLink>
                     </div>
-                    <div>
-                        {user.followed ? <button disabled={arr.some(id => id === user.id)} onClick={() => {
-                                unfollow(user.id)
-                            }}>UnFollow</button> :
 
-                            <button disabled={arr.some(id => id === user.id)} onClick={() => {
-                                follow(user.id)
-                            }}>Follow</button>}
-
-                    </div>
                 </span>
-            <span className={s.name}>
-                    <span>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u"}</div>
-                        <div>{"u"}</div>
+            <span >
+                    <span className={s.contSpan}>
+                        <div className={s.name}>{user.name}</div>
+                        <div>Status: {user.status}</div>
                     </span>
                 </span>
+            <div>
+                {user.followed ? <Button disabled={arr.some(id => id === user.id)} onClick={() => {
+                        unfollow(user.id)
+                    }}>UnFollow</Button> :
+
+                    <Button variant='outlined' disabled={arr.some(id => id === user.id)} onClick={() => {
+                        follow(user.id)
+                    }}>Follow</Button>}
+
+            </div>
         </div>)
 }
 

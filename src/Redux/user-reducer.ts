@@ -6,7 +6,7 @@ import {ActionsTypes} from "./store";
 
 export let initialState: UsersInitialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalCount: 0,
     currentPage: 1,
     isFetching: true,

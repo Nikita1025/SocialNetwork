@@ -1,11 +1,35 @@
+
+.container{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+.containerUser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f8ff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgb(0 0 0 / 30%);
+    padding: 10px;
+    margin-bottom: 10px;
+}
 .selectorPage{
     font-weight: bold;
-    color: white;
+    color: black;
 }
 .name{
-    color: white;
+    color: #000;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 22px;
+    text-transform: capitalize;
 }
 .page{
-    color: white;
+    color: black;
 
 }

@@ -1,16 +1,11 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import Nav from "./components/Nav/Nav";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import {BrowserRouter, HashRouter, Route, withRouter} from "react-router-dom";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import {RootState, store} from "./Redux/redux-store";
-import Preolader from "./components/Comman/Preolader/Preolader";
 import {Login} from './Login/Login';
-import {CircularProgress} from "@mui/material";
-import s from './components/Comman/Preolader/Preloader.module.css'
 import CircularIndeterminate from "./components/Comman/Preolader/Preolader";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
