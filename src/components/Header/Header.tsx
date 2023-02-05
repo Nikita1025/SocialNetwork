@@ -1,3 +1,5 @@
+import {useDispatch, useSelector} from "react-redux";
+
 export default Header
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -11,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import s from './Header.module.css'
+import {RootState} from "../../Redux/redux-store";
+import {Redirect} from "react-router-dom";
 type HeaderType = {
     isAuth: boolean
     login: string
@@ -19,16 +23,20 @@ type HeaderType = {
 }
 export function Header(props: HeaderType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-
+    const isAuth= useSelector<RootState>(state => state.auth.isAuth)
+    const dispatch=useDispatch()
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-
+    const onClick=()=>{
+        dispatch(props.logout())
+    }
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    // if(isAuth){
+    //     return <Redirect to={'/login'}/>
+    // }
     return (
         <Box sx={{ flexGrow: 1 }} className={s.container}>
             <AppBar position="static">
@@ -65,7 +73,7 @@ export function Header(props: HeaderType) {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={props.logout}>Log out</MenuItem>
+                                <MenuItem onClick={onClick}>Log out</MenuItem>
                             </Menu>
                         </div>
                     )}
