@@ -1,8 +1,9 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import s from "../Dialogs/Dialogs.module.css";
-import {Textarea} from "./FormsControls";
+import {Input, Textarea} from "./FormsControls";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
+import Button from "@mui/material/Button";
 
 export type FormDataType = {
     newMessageBody: string
@@ -17,7 +18,7 @@ export const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props)
                        name={'newMessageBody'} placeholder='Enter your message'/>
             </div>
             <div>
-                <button>Send</button>
+                <Button variant='contained' type='submit' style={{marginLeft:'15px', }}>Send</Button>
             </div>
         </form>
     )

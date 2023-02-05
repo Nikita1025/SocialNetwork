@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    margin-bottom: 30px;
+}
+.button{
+    padding: 15px 25px;
+    text-transform: none;
+}

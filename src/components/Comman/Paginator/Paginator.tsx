@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import TablePagination from '@mui/material/TablePagination';
+import React, {useEffect, useState} from 'react';
 import s from "../../Users/Users.module.css";
 
 
@@ -6,32 +9,39 @@ type UsersComp = {
     pageSize: number
     totalCount: number
     currentPage: number
-    onClickHandler: (pageNumber: number) => void
+    onPageChanged: (page: number, pageSize?: number) => void
     portionSize?:number
 
 }
-export const Paginator:React.FC<UsersComp> = ({onClickHandler, pageSize, currentPage, totalCount,portionSize=10}) => {
-    let pageCount = Math.ceil(totalCount / pageSize)
-    let pages = []
-    for (let i = 1; i <= 20; i++) {
-        pages.push(i)
-    }
-    let portionCount = Math.ceil(pageCount / pageSize)
-    let [portionNumber, setPortionNumber]=useState(1)
-    let leftPortionPageNumber = (portionNumber -1)* portionSize + 1
-    let rightPortionPageNumber = portionNumber * portionSize
+export const Paginator:React.FC<UsersComp> = ({ totalCount,
+                                                  pageSize,
+                                                  onPageChanged,
+                                                  currentPage}) => {
+    const [rowsPerPage, setRowsPerPage] = useState(pageSize);
+    useEffect(() => {
+        if (pageSize === rowsPerPage) return
+        setRowsPerPage(pageSize)
+    }, [pageSize])
 
-    return<div>
-            <div className={s.page}>
-                {pages
-                    .filter(el => el >= leftPortionPageNumber && el<=rightPortionPageNumber)
-                    .map((el, index) => {
-                    return <span key={index} onClick={(event) => {
-                        onClickHandler(el)
-                    }}
-                                 className={currentPage === el ? s.selectorPage : undefined}>{el}</span>
-                })}
-            </div>
-        </div>
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        onPageChanged(1, parseInt(event.target.value, 10))
+    };
+    const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => {
+        onPageChanged(page + 1, rowsPerPage)
+    };
+    return (
+        <TablePagination
+            component="div"
+            labelRowsPerPage="Users per page:"
+            count={totalCount}
+            page={currentPage - 1}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+    )
 };
 

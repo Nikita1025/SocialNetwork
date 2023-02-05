@@ -1,22 +1,27 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import s from "../Dialogs/Dialogs.module.css";
+import s from "./FormProfile.module.css";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import {Textarea} from "./FormsControls";
-
+import {Input} from "./FormsControls";
+import Button from "@mui/material/Button";
+import SendIcon from '@mui/icons-material/Send';
 export type FormDataType = {
     newPostText: string
 }
-const maxLength10 = maxLengthCreator(10)
+const maxLength10 = maxLengthCreator(300)
 export const AddNewPost: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={Textarea} name={'newPostText'}
-                       validate={[required, maxLength10]}/>
-            </div>
-            <div>
-                <button>Add post</button>
+            <div className={s.container}>
+                <div>
+                    <Field component={Input} name={'newPostText'}
+                           validate={[required, maxLength10]}/>
+                </div>
+                <div>
+                    <SendIcon type={'submit'} className={s.button} onSubmit={props.handleSubmit}>
+                        Add post
+                    </SendIcon>
+                </div>
             </div>
         </form>
     )

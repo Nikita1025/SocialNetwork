@@ -18,14 +18,14 @@ const FormControl = (props: any) => {
 export const Input = (props: any) => {
     const {input, meta, child, ...restProps} = props
     return <FormControl {...props}>
-        <TextField id="standard-basic" label="Standard" variant="standard" {...input} {...restProps} />
+        <TextField style={{minWidth: '550px'}} id="standard-basic" label="New post" variant="outlined" {...input} {...restProps}  />
     </FormControl>
 }
 
 export const Textarea = (props: any) => {
     const {input, meta, child, ...restProps} = props
     return <FormControl {...props}>
-        <textarea {...input} {...restProps}/>
+        <TextField style={{minWidth: '550px'}} id="standard-basic" label="New message" variant="outlined" {...input} {...restProps}  />
     </FormControl>
 }
 export const CreateField = (placeholder: string | null, name: string, validate: ((value: string) => (undefined | string))[], component: any,props={},text='') => (
