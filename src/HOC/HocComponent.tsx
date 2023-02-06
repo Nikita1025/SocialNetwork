@@ -6,10 +6,16 @@ type MapStateToPropsType ={
     isAuth: boolean
 }
 
+
+
 const mapStateToProps =(state:RootState):MapStateToPropsType=>{
     return{
         isAuth: state.auth.isAuth
     }
+
+
+
+
 }
 export function HocComponent  <T extends object>(Component:ComponentType<T>)  {
     function RedirectComponent (props:MapStateToPropsType):JSX.Element{
