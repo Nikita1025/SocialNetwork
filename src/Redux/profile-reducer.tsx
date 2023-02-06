@@ -1,6 +1,6 @@
 import {ActionsTypes} from "./store";
 import {Dispatch} from "redux";
-;import {profileAPI, userAPI} from "../api/api";
+import {profileAPI, userAPI} from "../api/api";
 
 export let initialState = {
     posts: [

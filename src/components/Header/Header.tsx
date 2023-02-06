@@ -34,9 +34,7 @@ export function Header(props: HeaderType) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    // if(isAuth){
-    //     return <Redirect to={'/login'}/>
-    // }
+
     return (
         <Box sx={{ flexGrow: 1 }} className={s.container}>
             <AppBar position="static">
