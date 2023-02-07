@@ -6,6 +6,8 @@ type MapStateToPropsType ={
     isAuth: boolean
 }
 
+
+
 const mapStateToProps =(state:RootState):MapStateToPropsType=>{
     return{
         isAuth: state.auth.isAuth
