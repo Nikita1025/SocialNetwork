@@ -23,6 +23,7 @@ export const initializedSuccess = () => ({type: 'SET-INITIALIZED',} as const)
 export const initializeApp = () =>
     async (dispatch: ThunkDispatch<RootState, void, ActionsTypes>) => {
         const res = await dispatch(getAuthUserData())
+        console.log(res)
         dispatch(initializedSuccess())
 
     }
