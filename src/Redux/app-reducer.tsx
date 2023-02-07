@@ -24,6 +24,7 @@ export const initializeApp = () =>
     async (dispatch: ThunkDispatch<RootState, void, ActionsTypes>) => {
         const res = await dispatch(getAuthUserData())
         console.log(res)
+        console.log(res)
         dispatch(initializedSuccess())
 
     }
