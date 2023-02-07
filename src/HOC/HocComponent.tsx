@@ -14,6 +14,8 @@ const mapStateToProps =(state:RootState):MapStateToPropsType=>{
     }
 
 
+
+
 }
 export function HocComponent  <T extends object>(Component:ComponentType<T>)  {
     function RedirectComponent (props:MapStateToPropsType):JSX.Element{
