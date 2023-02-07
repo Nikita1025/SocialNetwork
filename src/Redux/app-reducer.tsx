@@ -25,6 +25,7 @@ export const initializeApp = () =>
         const res = await dispatch(getAuthUserData())
         console.log(res)
         console.log(res)
+        console.log(res)
         dispatch(initializedSuccess())
 
     }
