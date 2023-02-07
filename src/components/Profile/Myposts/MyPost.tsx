@@ -3,8 +3,7 @@ import s from './Mypost.module.css'
 import Post from './post/Post';
 import {MyPostType} from "./Mypostcontainer";
 import {AddNewPostReduxForm, FormDataType} from "../../Comman/FormProfile";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../Redux/redux-store";
+
 
 const MyPost = memo((props: MyPostType) => {
 

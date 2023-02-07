@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from "./Header";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
 import { logout} from "../../Redux/auth-reducer";
+import {Header} from "./Header";
 
 
 

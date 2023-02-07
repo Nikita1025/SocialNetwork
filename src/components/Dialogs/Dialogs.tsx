@@ -3,15 +3,9 @@ import s from './Dialogs.module.css';
 import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
 import {DialogsType} from "./DialogsContainer";
-import {TextField} from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import {Redirect} from "react-router-dom";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {AddMessageFormRedux, FormDataType} from "../Comman/FormMessage";
-import Header from "../Header/Header";
 import HeaderContainer from "../Header/HeaderContainer";
-import {useSelector} from "react-redux";
-import {RootState} from "../../Redux/redux-store";
 import Nav from "../Nav/Nav";
 
 export const Dialogs = (props: DialogsType) => {

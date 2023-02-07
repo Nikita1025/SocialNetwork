@@ -1,6 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
 
-export default Header
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +13,6 @@ import Menu from '@mui/material/Menu';
 
 import s from './Header.module.css'
 import {RootState} from "../../Redux/redux-store";
-import {Redirect} from "react-router-dom";
 type HeaderType = {
     isAuth: boolean
     login: string
