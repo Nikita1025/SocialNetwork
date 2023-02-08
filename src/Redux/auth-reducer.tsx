@@ -15,7 +15,7 @@ export let initialState = {
 export const authReducer = (state = initialState, action: ActionsTypesAuth): { isAuth: boolean; id: string; login: string; email: string } => {
     switch (action.type) {
         case "SET-USER-DATA":
-            return {...state, ...action.data, isAuth: true}
+            return {...state, ...action.data}
         default:
             return state
     }

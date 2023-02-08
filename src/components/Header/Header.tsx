@@ -12,7 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import s from './Header.module.css'
-import {RootState} from "../../Redux/redux-store";
 type HeaderType = {
     isAuth: boolean
     login: string
@@ -21,14 +20,10 @@ type HeaderType = {
 }
 export function Header(props: HeaderType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const isAuth= useSelector<RootState>(state => state.auth.isAuth)
-    const dispatch=useDispatch()
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-    const onClick=()=>{
-        dispatch(props.logout())
-    }
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -69,7 +64,7 @@ export function Header(props: HeaderType) {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={onClick}>Log out</MenuItem>
+                                <MenuItem onClick={props.logout}>Log out</MenuItem>
                             </Menu>
                         </div>
                     )}

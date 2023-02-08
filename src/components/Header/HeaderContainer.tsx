@@ -1,13 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/redux-store";
-import { logout} from "../../Redux/auth-reducer";
+import {getAuthUserData, logout} from "../../Redux/auth-reducer";
 import {Header} from "./Header";
 
 
 
 type MapDispatchToPropsType = {
     logout: ()=>void
+    getAuthUserData:()=>void
 }
 type MapStateToProps = {
     isAuth: boolean
@@ -15,8 +16,14 @@ type MapStateToProps = {
     ava: string
 }
 export type HeaderContainerType = MapDispatchToPropsType & MapStateToProps
-const HeaderContainer = (props: HeaderContainerType) => {
-    return <Header isAuth={props.isAuth} login={props.login} logout={props.logout} ava={props.ava}/>
+
+ class HeaderContainer extends React.Component<HeaderContainerType>{
+    componentDidMount() {
+        this.props.getAuthUserData()
+    }
+    render() {
+        return  <Header {...this.props}/>;
+    }
 }
 
 const MapStateToProps = (state: RootState) => ({
@@ -24,4 +31,4 @@ const MapStateToProps = (state: RootState) => ({
     login: state.auth.login,
     ava: state.profilePage.profile.photos.small
 })
-export default connect(MapStateToProps, {logout})(HeaderContainer)
+export default connect(MapStateToProps, {getAuthUserData,logout})(HeaderContainer)
