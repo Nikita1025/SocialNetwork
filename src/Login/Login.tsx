@@ -52,7 +52,7 @@ export const Login = () => {
     })
 
     if (isAuth) {
-        return <Redirect to={'/profile'}/>
+        return <Redirect to={'/profile'} />
     }
     return (
         <div className={s.container}>

@@ -31,7 +31,7 @@ export const Users: React.FC<UsersComp> = ({
                                            }) => {
     return (
         <div>
-            <HeaderContainer/>
+            {/*<HeaderContainer/>*/}
             <Nav/>
             <div className={s.container}>
                 <Paginator onPageChanged={onClickHandler} totalCount={totalCount} currentPage={currentPage}

@@ -7,6 +7,7 @@ import {initializeApp} from "./Redux/app-reducer";
 import {RootState, store} from "./Redux/redux-store";
 import {Login} from './Login/Login';
 import CircularIndeterminate from "./components/Comman/Preolader/Preolader";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -32,34 +33,34 @@ class App extends React.Component<AppType> {
             return <CircularIndeterminate/>
         }
         return (
-            <BrowserRouter>
-                <div className='app-wrapper'>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <div className='app-wrapper-content'>
+                    <Route path='/login'  exact={true} render={() => <Login/>}/>
 
+                    <Route path='/dialogs'  exact={true} render={() => {
+                        return <Suspense fallback={<div>...Loading</div>}>
+                            <DialogsContainer/>
+                        </Suspense>
+                    }}/>
+                    <Route path='/'  exact={true} render={() => <Suspense fallback={<div>...Loading</div>}>
+                        <ProfileContainer/>
+                    </Suspense>}/>
+                    <Route path='/profile/:userId?' exact={true} render={() => {
+                        return <Suspense fallback={<div>...Loading</div>}>
+                            <ProfileContainer/>
+                        </Suspense>
+                    }}/>
+                    <Route path='/users'   exact={true} render={() => {
+                        return <Suspense>
+                            <UsersContainer/>
+                        </Suspense>
+                    }}/>
 
-                    <div className='app-wrapper-content'>
-                        <Route path='/login' render={() => <Login/>}/>
-
-                            <Route path='/dialogs' render={() => {
-                                return <Suspense fallback={<div>...Loading</div>}>
-                                    <DialogsContainer/>
-                                </Suspense>
-                            }}/>
-                            <Route path='/profile/:userId?' render={() => {
-                                return <Suspense fallback={<div>...Loading</div>}>
-                                    <ProfileContainer/>
-                                </Suspense>
-                            }}/>
-                            <Route path='/users' render={() => {
-                                return <Suspense>
-                                    <UsersContainer/>
-                                </Suspense>
-                            }}/>
-
-
-                    </div>
 
                 </div>
-            </BrowserRouter>
+
+            </div>
         );
 
 
@@ -74,10 +75,7 @@ let AppContainer = compose<React.ComponentType>(
 
 
 const SamuraiApp = () => {
-    return <BrowserRouter>
-        <Provider store={store}>
-            <AppContainer/>
-        </Provider>
-    </BrowserRouter>
+    return <AppContainer/>
+
 }
 export default SamuraiApp

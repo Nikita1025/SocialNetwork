@@ -20,7 +20,8 @@ const mapStateToProps =(state:RootState):MapStateToPropsType=>{
 export function HocComponent  <T extends object>(Component:ComponentType<T>)  {
     function RedirectComponent (props:MapStateToPropsType):JSX.Element{
         let {isAuth, ...restProps}= props
-        if(!isAuth)  return <Redirect to={'/Login'}/>
+        console.log(isAuth)
+        if(!isAuth)  return <Redirect to={'/login'}/>
         return <Component {...restProps as T}/>
     }
 

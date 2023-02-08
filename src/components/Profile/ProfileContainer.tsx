@@ -12,14 +12,19 @@ type PathParamsType = {
 }
 export type  CommonPropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
 const ProfileContainer = (props: CommonPropsType) => {
-    useEffect(() => {
+    const refreshProfile = () => {
         let userId = +props.match.params.userId
         if(!userId){
             userId = Number(props.authorizedUserId)
+            if (!userId) {
+                props.history.push('/login')
+            }
         }
         props.ProfileThunk(userId)
         props.getStatusThunk(userId)
-
+    }
+    useEffect(() => {
+        refreshProfile()
     }, [])
 
     return (

@@ -1,11 +1,24 @@
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+ import SamuraiApp from "./App";
+//
+// ReactDOM.render(
+//     <SamuraiApp/>,
+//     document.getElementById('root'));
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import SamuraiApp from "./App";
+import ReactDOM from 'react-dom/client';
+import {store} from "./Redux/redux-store";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
+let root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
-ReactDOM.render(
-    <SamuraiApp/>,
-    document.getElementById('root'));
-
+root.render(
+    <BrowserRouter basename={'SocialNetwork'}>
+     <Provider store={store}>
+        <SamuraiApp />
+     </Provider>
+    </BrowserRouter>
+);
 

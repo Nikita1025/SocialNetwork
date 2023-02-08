@@ -19,7 +19,7 @@ export const Dialogs = (props: DialogsType) => {
     if (!props.isAuth) return <Redirect to={'/Login'}/>
     return (
         <div>
-            <HeaderContainer/>
+            {/*<HeaderContainer/>*/}
             <Nav/>
             <div className={s.dialogs}>
 
