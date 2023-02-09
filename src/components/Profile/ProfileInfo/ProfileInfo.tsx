@@ -4,6 +4,8 @@ import {ProfileInitialStateType} from "../../../Redux/profile-reducer";
 import {ProfileStatusWithHooks} from "../Myposts/ProfileStatusWithHooks";
 import userPhoto from "../../../image/user.png";
 import s from './Profileinfo.module.css'
+import IconButton from '@mui/material/IconButton';
+import icon from '../../../image/photo.png'
 
 type ProfileInfoType = {
     profile: ProfileInitialStateType
@@ -16,7 +18,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
         return <Preolader/>
     }
-    const mainPhotoSelected=(e:ChangeEvent<HTMLInputElement>)=>{
+    const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             props.updatePhoto(e.target.files[0])
         }
@@ -25,9 +27,17 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <div className={s.image}>
             <div className={s.infoContainer}>
                 <img src={props.profile.photos.large || userPhoto} className={s.avatar}/>
-                {props.isOwner && <input type='file' onChange={mainPhotoSelected}/>}
+                <label htmlFor={'load_avatar'}>
+                    <input id={'load_avatar'} className={s.input} type="file" onChange={mainPhotoSelected}/>
+                    <IconButton component="span" className={s.icon}>
+                        <img src={icon}/>
+                    </IconButton>
+                </label>
+
+
             </div>
-            <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} profile={props.profile}/>
+            <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk}
+                                    profile={props.profile}/>
         </div>
 
     )
