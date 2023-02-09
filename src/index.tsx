@@ -1,11 +1,4 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
- import SamuraiApp from "./App";
-//
-// ReactDOM.render(
-//     <SamuraiApp/>,
-//     document.getElementById('root'));
+import SamuraiApp from "./App";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {store} from "./Redux/redux-store";

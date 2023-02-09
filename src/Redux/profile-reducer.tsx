@@ -24,8 +24,8 @@ export let initialState = {
         fullName: "",
         userId: 2,
         photos: {
-            small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
-            large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
+            small: "",
+            large: ""
         },
     },
     status: ""
@@ -53,6 +53,9 @@ export const profileReducer = (state = initialState, action: ActionTypesProfile)
         case "DELETE-POST": {
             return {...state, posts: state.posts.filter(el => el.id === action.id)}
         }
+        case "SAVE-PHOTO": {
+            return {...state, profile: {...state.profile, photos: action.photos}}
+        }
         default:
             return state
     }
@@ -65,6 +68,7 @@ export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostTex
 export const setUserProfile = (profile: ProfileInitialStateType) => ({type: "SET_USER_PROFILE", profile} as const)
 export const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
 export const deletePostAC = (id: number) => ({type: 'DELETE-POST', id} as const)
+export const savePhotosSuccessAC  = (photos: PhotosType) => ({type: 'SAVE-PHOTO', photos} as const)
 
 //thunks
 export const ProfileThunk = (userId: number) =>
@@ -88,11 +92,21 @@ export const updateStatusThunk = (status: string) =>
 
     }
 
+export const savePhoto = (file: File) =>
+    async (dispatch: Dispatch<ActionsTypes>) => {
+        const res = await profileAPI.savePhoto(file)
+        if (res.resultCode === 0) {
+            dispatch(savePhotosSuccessAC(res.data.photos))
+        }
+
+    }
+
 //types
 export type ActionTypesProfile = AddPostActionType
     | newMessageBodyType | SendMessageType
     | setUserProfileType | setStatusType
     | ReturnType<typeof deletePostAC>
+|ReturnType<typeof savePhotosSuccessAC>
 type AddPostActionType = ReturnType<typeof addPostAC>
 type newMessageBodyType = ReturnType<typeof newMessageBodyAC>
 type SendMessageType = ReturnType<typeof SandMessageAC>
@@ -125,8 +139,9 @@ export type ProfileInitialStateType = {
     lookingForAJobDescription: string
     fullName: string
     userId: number
-    photos: {
-        small: string
-        large: string
-    }
+    photos: PhotosType
+}
+type PhotosType={
+    small: string
+    large: string
 }
