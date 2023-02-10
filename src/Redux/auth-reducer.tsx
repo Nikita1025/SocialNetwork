@@ -53,7 +53,7 @@ export const logout = () =>
     async (dispatch: Dispatch<ActionsTypes>) => {
         const res = await loginAPI.logout()
         if (res.data.resultCode === 0) {
-            dispatch(SetUserDataAC('', '', '', false))
+            return  dispatch(SetUserDataAC('', '', '', false))
         }
     }
 //types

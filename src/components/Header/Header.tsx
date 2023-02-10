@@ -1,4 +1,3 @@
-import {useDispatch, useSelector} from "react-redux";
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -20,10 +19,10 @@ type HeaderType = {
 }
 export function Header(props: HeaderType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
     };

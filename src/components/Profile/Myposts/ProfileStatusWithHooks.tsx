@@ -1,7 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
+import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 import s from './ProfileStatusWithHooks.module.css'
 import {ProfileInitialStateType} from "../../../Redux/profile-reducer";
 import {TextField} from "@mui/material";
+import {Contacts} from "@mui/icons-material";
 type ProfileStatusType = {
     status: string
     updateStatusThunk: (status: string) => void
@@ -49,8 +50,6 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
                            className={s.input}
                 />
             </div>}
+
     </div>
 }
-
-
-
