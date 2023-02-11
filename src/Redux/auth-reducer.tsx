@@ -16,8 +16,9 @@ type initialStateType = typeof initialState
 export const authReducer = (state = initialState, action: ActionsTypesAuth): initialStateType => {
     switch (action.type) {
         case "SET-USER-DATA":
-        case "GET-CAPTCHA":
             return {...state, ...action.data}
+        case "GET-CAPTCHA":
+            return {...state, captchaUrl: action.data.url}
         default:
             return state
     }
@@ -39,9 +40,9 @@ export const getAuthUserData = () => async (dispatch: Dispatch<ActionsTypes>) =>
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string) =>
+export const login = (email: string, password: string, rememberMe: boolean,captcha:string) =>
     async (dispatch: ThunkDispatch<RootState, void, ActionsTypes>) => {
-        const res = await loginAPI.login(email, password, rememberMe,captcha)
+        const res = await loginAPI.login(email, password, rememberMe, captcha)
         if (res.data.resultCode === 0) {
             dispatch(getAuthUserData())}
         else {

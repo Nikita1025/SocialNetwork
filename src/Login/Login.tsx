@@ -41,7 +41,7 @@ export const Login = () => {
             email: '',
             password: '',
             rememberMe: false,
-            symbols: '',
+            symbols: ''
         },
         validationSchema: validationSchema,
         onSubmit: values => {
@@ -100,17 +100,18 @@ export const Login = () => {
                                 }
                             />
                         </FormControl>
-                        <Button type={'submit'} variant={'contained'} className={s.button}>
-                            Sign In
-                        </Button>
                         {captchaUrl && <img src={captchaUrl}/>}
                         {captchaUrl &&     <FormControl sx={{m: 1}} variant="standard">
                             <InputLabel>Symbols</InputLabel>
-                            <Input {...getFieldProps('email')} />
+                            <Input {...getFieldProps('symbols')} />
                             {touched.symbols && errors.symbols && (
                                 <div style={{color:'red'}}>{errors.symbols}</div>
                             )}
                         </FormControl>}
+                        <Button type={'submit'} variant={'contained'} className={s.button}>
+                            Sign In
+                        </Button>
+
                     </FormGroup>
                 </form>
 
