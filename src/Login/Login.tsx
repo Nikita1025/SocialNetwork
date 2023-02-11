@@ -14,15 +14,12 @@ import {login} from "../Redux/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../Redux/redux-store";
 import s from './Login.module.css'
-type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
-}
+
 export const Login = () => {
     const dispatch = useDispatch()
 
     const isAuth = useSelector<RootState>(state => state.auth.isAuth)
+    const captchaUrl = useSelector<RootState, string | null>(state => state.auth.captchaUrl)
     const [showPassword, setShowPassword] = useState(false)
 
     const handleClickShowPassword = () => setShowPassword(show => !show)
@@ -44,10 +41,11 @@ export const Login = () => {
             email: '',
             password: '',
             rememberMe: false,
+            symbols: '',
         },
         validationSchema: validationSchema,
         onSubmit: values => {
-            dispatch(login(values.email, values.password, values.rememberMe))
+            dispatch(login(values.email, values.password, values.rememberMe, values.symbols))
         },
     })
 
@@ -105,6 +103,14 @@ export const Login = () => {
                         <Button type={'submit'} variant={'contained'} className={s.button}>
                             Sign In
                         </Button>
+                        {captchaUrl && <img src={captchaUrl}/>}
+                        {captchaUrl &&     <FormControl sx={{m: 1}} variant="standard">
+                            <InputLabel>Symbols</InputLabel>
+                            <Input {...getFieldProps('email')} />
+                            {touched.symbols && errors.symbols && (
+                                <div style={{color:'red'}}>{errors.symbols}</div>
+                            )}
+                        </FormControl>}
                     </FormGroup>
                 </form>
 
