@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent} from 'react';
 import Preolader from "../../Comman/Preolader/Preolader";
 import {ProfileInitialStateType} from "../../../Redux/profile-reducer";
 import {ProfileStatusWithHooks} from "../Myposts/ProfileStatusWithHooks";
@@ -6,7 +6,6 @@ import userPhoto from "../../../image/user.png";
 import s from './Profileinfo.module.css'
 import IconButton from '@mui/material/IconButton';
 import icon from '../../../image/photo.png'
-import ProfileData from "../Myposts/ProfileData/ProfileData";
 
 type ProfileInfoType = {
     profile: ProfileInitialStateType
@@ -24,21 +23,24 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             props.updatePhoto(e.target.files[0])
         }
     }
+
+
+
     return (
         <div className={s.image}>
             <div className={s.infoContainer}>
-                {/*<img src={props.profile.photos.large || userPhoto} className={s.avatar}/>*/}
-                {/*<label htmlFor={'load_avatar'}>*/}
-                {/*    <input id={'load_avatar'} className={s.input} type="file" onChange={mainPhotoSelected}/>*/}
-                {/*    <IconButton component="span" className={s.icon}>*/}
-                {/*        <img src={icon}/>*/}
-                {/*    </IconButton>*/}
-                {/*</label>*/}
-
+                <img src={props.profile.photos.large || userPhoto} className={s.avatar}/>
+                {props.isOwner && <label htmlFor={'load_avatar'}>
+                    <input id={'load_avatar'} className={s.input} type="file" onChange={mainPhotoSelected}/>
+                    <IconButton component="span" className={s.icon}>
+                        <img src={icon}/>
+                    </IconButton>
+                </label>}
             </div>
+
             <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk}
                                     profile={props.profile}/>
-            <ProfileData profile={props.profile}/>
+
         </div>
 
     )
