@@ -10,6 +10,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import s from './Header.module.css'
+import {Nav} from "../Nav/Nav";
+import {NavLink} from "react-router-dom";
 
 type HeaderType = {
     isAuth: boolean
@@ -30,15 +32,19 @@ export function Header(props: HeaderType) {
 
     return (
         <Box sx={{flexGrow: 1}} className={s.container}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+            <AppBar position="static" >
+                <Toolbar className={s.appContainer}>
+
+                    <div>
                         <img className={s.img}
                              src={'https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/uploads/2021/11/logo_light.svg'}/>
-                    </Typography>
+
+                    </div>
+                    <Nav/>
+
                     {props.isAuth && (
                         <div className={s.loginBlock}>
-                            <p>{props.login}</p>
+                            <p className={s.p}>{props.login}</p>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -72,5 +78,28 @@ export function Header(props: HeaderType) {
                 </Toolbar>
             </AppBar>
         </Box>
+        // <header>
+        //     <div>
+        //         <div>
+        //
+        //             <img className={s.img}
+        //                  src={'https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/uploads/2021/11/logo_light.svg'}/>
+        //         </div>
+        //
+        //
+        //         <Nav/>
+        //
+        //         <div>
+        //             {props.isAuth
+        //                 ? <div>
+        //                     <span>{props.login}</span>
+        //                 </div>
+        //                 : <NavLink to={'/login'}>
+        //                     Login
+        //                 </NavLink>}
+        //
+        //         </div>
+        //     </div>
+        // </header>
     );
 }

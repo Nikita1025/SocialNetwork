@@ -1,5 +1,9 @@
 .container{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+.appContainer{
+    display: flex;
+    justify-content: space-between;
 }
 .img{
     width: 130px;
@@ -11,4 +15,7 @@
 }
 .loginBlock{
     display: flex;
+}
+.p{
+    letter-spacing: 1px
 }

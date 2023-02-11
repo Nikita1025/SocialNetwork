@@ -5,7 +5,7 @@ import {Message} from "./Message/Message";
 import {DialogsType} from "./DialogsContainer";
 import {Redirect} from "react-router-dom";
 import {AddMessageFormRedux, FormDataType} from "../Comman/FormMessage";
-import Nav from "../Nav/Nav";
+
 
 export const Dialogs = (props: DialogsType) => {
     let {MessagesPage, SandMessage} = props
@@ -24,7 +24,6 @@ export const Dialogs = (props: DialogsType) => {
     if (!props.isAuth) return <Redirect to={'/Login'}/>
     return (
         <div>
-            <Nav/>
             <div className={s.dialogs}>
 
                 <div className={s.dialogsItems}>

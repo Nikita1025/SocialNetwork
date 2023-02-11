@@ -31,7 +31,6 @@ export const Users: React.FC<UsersComp> = ({
                                            }) => {
     return (
         <div>
-            <Nav/>
             <div className={s.container}>
                 <Paginator onPageChanged={onClickHandler} totalCount={totalCount} currentPage={currentPage}
                            pageSize={pageSize} />

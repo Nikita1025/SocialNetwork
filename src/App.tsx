@@ -1,13 +1,14 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import {connect, Provider} from "react-redux";
+import {Route, withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import {RootState, store} from "./Redux/redux-store";
 import {Login} from './Login/Login';
 import CircularIndeterminate from "./components/Comman/Preolader/Preolader";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import LinearProgress from '@mui/material/LinearProgress';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
@@ -39,20 +40,20 @@ class App extends React.Component<AppType> {
                     <Route path='/login'  exact={true} render={() => <Login/>}/>
 
                     <Route path='/dialogs'  exact={true} render={() => {
-                        return <Suspense fallback={<div>...Loading</div>}>
+                        return <Suspense fallback={<LinearProgress />}>
                             <DialogsContainer/>
                         </Suspense>
                     }}/>
-                    <Route path='/'  exact={true} render={() => <Suspense fallback={<div>...Loading</div>}>
+                    <Route path='/'  exact={true} render={() => <Suspense fallback={<LinearProgress />}>
                         <ProfileContainer/>
                     </Suspense>}/>
                     <Route path='/profile/:userId?' exact={true} render={() => {
-                        return <Suspense fallback={<div>...Loading</div>}>
+                        return <Suspense fallback={<LinearProgress />}>
                             <ProfileContainer/>
                         </Suspense>
                     }}/>
                     <Route path='/users'   exact={true} render={() => {
-                        return <Suspense>
+                        return <Suspense fallback={<LinearProgress />}>
                             <UsersContainer/>
                         </Suspense>
                     }}/>

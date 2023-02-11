@@ -19,7 +19,6 @@ const Profile = (props:PropsType) => {
             <div className={s.container}>
                 <ProfileInfo isOwner={props.isOwner} profile={props.profile} status={props.status}
                               updateStatusThunk={props.updateStatusThunk} updatePhoto={props.savePhoto}/>
-                <Nav/>
                 <Mypostcontainer />
             </div>
 
