@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 let root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-    <BrowserRouter basename={'SocialNetwork'}>
+    <BrowserRouter basename={"SocialNetwork"}>
      <Provider store={store}>
         <SamuraiApp />
      </Provider>
