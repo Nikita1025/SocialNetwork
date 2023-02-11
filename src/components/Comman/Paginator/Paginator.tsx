@@ -1,8 +1,5 @@
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
 import TablePagination from '@mui/material/TablePagination';
 import React, {useEffect, useState} from 'react';
-import s from "../../Users/Users.module.css";
 
 
 type UsersComp = {
@@ -10,13 +7,15 @@ type UsersComp = {
     totalCount: number
     currentPage: number
     onPageChanged: (page: number, pageSize?: number) => void
-    portionSize?:number
+    portionSize?: number
 
 }
-export const Paginator:React.FC<UsersComp> = ({ totalCount,
-                                                  pageSize,
-                                                  onPageChanged,
-                                                  currentPage}) => {
+export const Paginator: React.FC<UsersComp> = ({
+                                                   totalCount,
+                                                   pageSize,
+                                                   onPageChanged,
+                                                   currentPage
+                                               }) => {
     const [rowsPerPage, setRowsPerPage] = useState(pageSize);
     useEffect(() => {
         if (pageSize === rowsPerPage) return

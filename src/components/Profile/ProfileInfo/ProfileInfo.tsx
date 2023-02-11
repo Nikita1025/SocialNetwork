@@ -25,7 +25,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     }
 
 
-
     return (
         <div className={s.image}>
             <div className={s.infoContainer}>

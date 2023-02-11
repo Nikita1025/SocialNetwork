@@ -5,7 +5,7 @@ import {MyPostType} from "./Mypostcontainer";
 import {AddNewPostReduxForm, FormDataType} from "../../Comman/FormProfile";
 
 
-const MyPost = memo((props: MyPostType) => {
+export const MyPost = memo((props: MyPostType) => {
 
     let postElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
     let onAddPost=(values:FormDataType)=>{
@@ -25,4 +25,3 @@ const MyPost = memo((props: MyPostType) => {
         </div>
     )
 })
-export default MyPost;

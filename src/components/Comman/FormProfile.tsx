@@ -3,11 +3,8 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import s from "./FormProfile.module.css";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
 import {Input} from "./FormsControls";
-import Button from "@mui/material/Button";
 import SendIcon from '@mui/icons-material/Send';
-export type FormDataType = {
-    newPostText: string
-}
+
 const maxLength10 = maxLengthCreator(300)
 export const AddNewPost: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
@@ -27,3 +24,8 @@ export const AddNewPost: React.FC<InjectedFormProps<FormDataType>> = (props) => 
     )
 }
 export const AddNewPostReduxForm = reduxForm<FormDataType>({form: 'ProfileAddNewPostForm'})(AddNewPost)
+
+
+export type FormDataType = {
+    newPostText: string
+}

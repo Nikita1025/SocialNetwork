@@ -1,29 +1,29 @@
 import React from 'react';
-import MyPost from "./MyPost";
+
 import {connect} from "react-redux";
-import { RootState} from "../../../Redux/redux-store";
+import {RootState} from "../../../Redux/redux-store";
 import {Dispatch} from "redux";
 import {addPostAC} from "../../../Redux/profile-reducer";
+import {MyPost} from "./MyPost";
 
-type mapStateToPropsType={
-        posts: Array<PostType>
+type mapStateToPropsType = {
+    posts: Array<PostType>
 }
-type PostType ={
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
-type mapDispatchToPropsType ={
-    addPost:(newPostText: string)=>void
+type mapDispatchToPropsType = {
+    addPost: (newPostText: string) => void
 }
 export type MyPostType = mapStateToPropsType & mapDispatchToPropsType
-let mapStateToProps =(state:RootState):mapStateToPropsType=>{
-    return{
+let mapStateToProps = (state: RootState): mapStateToPropsType => {
+    return {
         posts: state.profilePage.posts
     }
 }
-let mapDispatchToProps =(dispatch:Dispatch):mapDispatchToPropsType=> {
-    let newPostElements = React.createRef<HTMLTextAreaElement>();
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         addPost: (newPostText: string) => {
             dispatch(addPostAC(newPostText))

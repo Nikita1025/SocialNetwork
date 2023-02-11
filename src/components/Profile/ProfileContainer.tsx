@@ -16,7 +16,21 @@ import {compose} from "redux";
 type PathParamsType = {
     userId: string
 }
+export type ProfileContainerType = MapStateToPropsType & MapDispatchToProps
+type MapStateToPropsType = {
+    profile: ProfileInitialStateType
+    isAuth: boolean
+    status: string
+    authorizedUserId: string
+}
+type MapDispatchToProps = {
+    ProfileThunk: (userId: string) => void
+    getStatusThunk: (userId: string) => void
+    updateStatusThunk: (status: string) => void
+    savePhoto: (file: File) => void
+}
 export type  CommonPropsType = RouteComponentProps<PathParamsType> & ProfileContainerType
+
 class ProfileContainer extends React.Component<CommonPropsType> {
     refreshProfile() {
         let userId = this.props.match.params.userId
@@ -39,6 +53,7 @@ class ProfileContainer extends React.Component<CommonPropsType> {
             this.refreshProfile()
         }
     }
+
     render() {
         return (
             <Profile {...this.props}
@@ -51,19 +66,7 @@ class ProfileContainer extends React.Component<CommonPropsType> {
     }
 }
 
-export type ProfileContainerType = MapStateToPropsType & MapDispatchToProps
-type MapStateToPropsType = {
-    profile: ProfileInitialStateType
-    isAuth: boolean
-    status: string
-    authorizedUserId: string
-}
-type MapDispatchToProps = {
-    ProfileThunk: (userId: string) => void
-    getStatusThunk:(userId: string)=>void
-    updateStatusThunk:(status: string)=>void
-    savePhoto:(file: File)=>void
-}
+
 let mapStateToProps = (state: RootState): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
@@ -72,12 +75,13 @@ let mapStateToProps = (state: RootState): MapStateToPropsType => ({
 })
 
 
-
 export default compose<ComponentType>(
-    connect(mapStateToProps, {ProfileThunk,
+    connect(mapStateToProps, {
+        ProfileThunk,
         getStatusThunk,
         updateStatusThunk,
-        savePhoto}),
+        savePhoto
+    }),
     withRouter,
     HocComponent
 )(ProfileContainer)

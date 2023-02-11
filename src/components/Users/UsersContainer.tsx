@@ -61,7 +61,7 @@ export const UsersAPIComponent = (props: UsersType) => {
         getUsersThunkCreator(pageNumber, pageSize)
     }
 
-    console.log('users container')
+
     return (<>
             {isFetching ? <Preolader/> : null}
             <Users users={users}

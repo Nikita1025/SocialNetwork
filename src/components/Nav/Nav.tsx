@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Nav.module.css';
 
-const Nav = () =>{
+export const Nav = () =>{
     return(
         <div className={s.container}>
             <ul className={s.ul}>
@@ -19,4 +19,3 @@ const Nav = () =>{
 
     )
 }
-export default Nav;

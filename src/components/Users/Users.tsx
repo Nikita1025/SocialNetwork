@@ -3,9 +3,9 @@ import {usersType} from "./UsersContainer";
 import {Arr} from "../../Redux/user-reducer";
 import {Paginator} from "../Comman/Paginator/Paginator";
 import {User} from "./User";
-import HeaderContainer from "../Header/HeaderContainer";
-import Nav from "../Nav/Nav";
+
 import s from './Users.module.css'
+import {Nav} from "../Nav/Nav";
 
 type UsersComp = {
     users: Array<usersType>
@@ -31,7 +31,6 @@ export const Users: React.FC<UsersComp> = ({
                                            }) => {
     return (
         <div>
-            {/*<HeaderContainer/>*/}
             <Nav/>
             <div className={s.container}>
                 <Paginator onPageChanged={onClickHandler} totalCount={totalCount} currentPage={currentPage}

@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,12 +10,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import s from './Header.module.css'
+
 type HeaderType = {
     isAuth: boolean
     login: string
-    logout:()=>void
+    logout: () => void
     ava: string
 }
+
 export function Header(props: HeaderType) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -28,11 +29,12 @@ export function Header(props: HeaderType) {
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }} className={s.container}>
+        <Box sx={{flexGrow: 1}} className={s.container}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <img className={s.img} src={'https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/uploads/2021/11/logo_light.svg'}/>
+                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                        <img className={s.img}
+                             src={'https://www.radiustheme.com/demo/wordpress/themes/cirkle/wp-content/uploads/2021/11/logo_light.svg'}/>
                     </Typography>
                     {props.isAuth && (
                         <div className={s.loginBlock}>

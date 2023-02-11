@@ -4,9 +4,6 @@ import userPhoto from "../../image/user.png";
 import {usersType} from "./UsersContainer";
 import {NavLink} from 'react-router-dom';
 import {Arr} from "../../Redux/user-reducer";
-import {Paginator} from "../Comman/Paginator/Paginator";
-import HeaderContainer from "../Header/HeaderContainer";
-import Nav from "../Nav/Nav";
 import Button from "@mui/material/Button";
 
 
@@ -24,10 +21,6 @@ export const User: React.FC<UsersComp> = ({
                                               user,
                                               follow,
                                               unfollow,
-                                              onClickHandler,
-                                              pageSize,
-                                              currentPage,
-                                              totalCount,
                                               arr
                                           }) => {
     return (
