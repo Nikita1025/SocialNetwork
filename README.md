@@ -4,6 +4,7 @@ A training project based on the materials of the YouTube channel IT-KAMASUTRA "T
 
 Demo
  https://nikita1025.github.io/SocialNetwork/
+ 
 Technology stack
 react
 redux, react-redux, redux-thunk, redux-form
