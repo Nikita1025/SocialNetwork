@@ -6,10 +6,15 @@ Demo
  https://nikita1025.github.io/SocialNetwork/
  
 Technology stack
+
 react
+
 redux, react-redux, redux-thunk, redux-form
+
 react-router-dom
+
 typescript
+
 axios
-reselect
+
 material UI
